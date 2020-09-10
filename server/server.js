@@ -10,7 +10,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+
+//EndPoints 
 app.use(require("./Controllers/UsuarioController"));
+
+
+
 
 //================Conexion a la base de datos=========================
 mongoose.connect(
