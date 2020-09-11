@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 
 //Entorno 
-const nube = 'mongodb+srv://Admin:D2imC9134fhQ5FMo@cluster0.938gl.mongodb.net/Curso'
+const nube = process.env.MONGO_URI
 const local = 'mongodb://localhost:27017/Curso'
 
 
