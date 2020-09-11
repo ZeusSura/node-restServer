@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const Usuario = require("../Models/Usuario");
 const bcrypt = require("bcrypt");
-
 const _ = require("underscore");
+const Usuario = require("../Models/Usuario");
+const {verificarToken,verificarAdminRole}=require('../MiddleWare/Autentication')
 
-app.get("/usuario", function (req, res) {
+app.get("/usuario",verificarToken ,function (req, res) {
   let desde = req.query.desde || 0;
   desde = Number(desde);
   let limite = req.query.limite || 0;
@@ -31,8 +31,7 @@ app.get("/usuario", function (req, res) {
     });
 });
 
-
-app.post("/usuario", (req, res) => {
+app.post("/usuario", [verificarToken,verificarAdminRole] ,(req, res) => {
   let body = req.body;
   let usuario = new Usuario({
     nombre: body.nombre,
@@ -55,7 +54,7 @@ app.post("/usuario", (req, res) => {
   });
 });
 
-app.put("/usuario/:id", (req, res) => {
+app.put("/usuario/:id",[verificarToken,verificarAdminRole] , (req, res) => {
   let id = req.params.id;
   let body = _.pick(req.body, ["email", "nombre", "img", "role", "estado"]);
 
@@ -80,7 +79,7 @@ app.put("/usuario/:id", (req, res) => {
   );
 });
 
-app.delete("/usuario/:id", (req, res) => {
+app.delete("/usuario/:id",verificarToken , (req, res) => {
   let id =req.params.id;
   let cambiarEstado ={
     estado:false
@@ -108,7 +107,5 @@ app.delete("/usuario/:id", (req, res) => {
     });
   })
 });
-
-
 
 module.exports = app;

@@ -17,14 +17,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-//EndPoints 
-app.use(require("./Controllers/UsuarioController"));
+//RUTAS
+app.use(require("./Controllers/Index"));
 
 
 
 
 //================Conexion a la base de datos=========================
-mongoose.connect(nube,
+mongoose.connect(local,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
