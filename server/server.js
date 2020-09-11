@@ -24,7 +24,7 @@ app.use(require("./Controllers/Index"));
 
 
 //================Conexion a la base de datos=========================
-mongoose.connect(local,
+mongoose.connect(nube,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
