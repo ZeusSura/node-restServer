@@ -20,9 +20,6 @@ app.use(bodyParser.json());
 //RUTAS
 app.use(require("./Controllers/Index"));
 
-
-
-
 //================Conexion a la base de datos=========================
 mongoose.connect(nube,
   {
